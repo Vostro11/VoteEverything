@@ -43,6 +43,12 @@ class CategoryController extends Controller{
 		return redirect('admin/category');
 	}
 
+	public function store_tag(Request $request){
+		$this->tagRepo->createTag($request->all());
+		Session::flash('success','Operation Success');
+		return redirect()->back();
+	}
+
 	public function show(){
 		return view('category::show');
 	}

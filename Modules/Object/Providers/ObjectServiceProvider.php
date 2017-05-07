@@ -23,7 +23,7 @@ class ObjectServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->registerObjectAtrributeRepository();
+        $this->registerObjectAttributeRepository();
         $this->registerObjectRepository();
         $this->registerUserObjectRepository();
     }
@@ -99,10 +99,10 @@ class ObjectServiceProvider extends ServiceProvider
         return [];
     }
 
-	public function registerObjectAtrributeRepository() {
+	public function registerObjectAttributeRepository() {
 		return $this->app->bind(
-			'Modules\\Object\\Repositories\\ObjectAtrributeRepository',
-			'Modules\\Object\\Repositories\\ObjectAtrributeEloquent'
+			'Modules\\Object\\Repositories\\ObjectAttributeRepository',
+			'Modules\\Object\\Repositories\\ObjectAttributeEloquent'
 
 		);
 	}

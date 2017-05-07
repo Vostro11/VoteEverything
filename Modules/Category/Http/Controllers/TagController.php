@@ -20,38 +20,38 @@ class TagController extends Controller{
 
 	public function index(){
 		$tags = $this->tagRepo->getAllTag();
-		return view('category::tag.index',compact('tags'));
+		return view('category::index',compact('tags'));
 	}
 
 	public function create(){
-		return view('category::tag.create');
+		return view('category::create');
 	}
 
 	public function store(Request $request){
 		$this->tagRepo->createTag($request->all());
 		Session::flash('success','Operation Success');
-		return redirect('admin/category/tag');
+		return redirect('admin/tag');
 	}
 
 	public function show(){
-		return view('category::tag.show');
+		return view('category::show');
 	}
 
 	public function edit($id){
 		$tag = $this->tagRepo->getTagById($id);
-		return view('category::tag.edit',compact('tag'));
+		return view('category::edit',compact('tag'));
 	}
 
 	public function update($id ,Request $request){
 		$this->tagRepo->updateTag($id,$request->all());
 		Session::flash('success','Operation Success');
-		return redirect('admin/category/tag');
+		return redirect('admin/tag');
 	}
 
 	public function delete($id){
 		$this->tagRepo->deleteTag($id);
 		Session::flash('success','Operation Success');
-		return redirect('admin/category/tag');
+		return redirect('admin/category/');
 	}
 
 }

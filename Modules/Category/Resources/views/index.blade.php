@@ -61,7 +61,7 @@
 			<div class="col-md-6">
 				<h4>Tags</h4>
 				<div class="input">
-					<form role="form" action="{{url('admin/category/store')}}" method="post" enctype="multipart/form-data">
+					<form role="form" action="{{url('admin/category/store-tag')}}" method="post" enctype="multipart/form-data">
 						{!! csrf_field() !!}
 						<div class="form-group">
 							<div class="col-md-3">
@@ -69,9 +69,9 @@
 							</div>
 							<div class="col-md-9">							
 								<input type="text" class="form-control" id="tag_name" placeholder="Enter Name" name="tag_name" value="{{old('category_name')}}" required>
-								@if ($errors->has('name'))
+								@if ($errors->has('category_name'))
 								<span class="help-block" style="color: #cc0000">
-									<strong> * {{ $errors->first('name') }}</strong>
+									<strong> * {{ $errors->first('category_name') }}</strong>
 								</span>
 								@endif
 							</div>
@@ -115,11 +115,13 @@
 							<tr>
 								<td>{{$object['id']}}</td>
 								<td>{{$object['object_name']}}</td>
-								@foreach($tags as $tag)
-									@if($tag['oject_id'] == $object['id'])
-										<td>{{$tag['tag_name']}} | </td>
-									@endif
-								@endforeach
+								<td>
+									@foreach($tags as $tag)
+										@if($tag['object_id'] == $object['id'])
+											<a href="{{url('admin/tag/delete/'.$tag['id'])}}">#{{$tag['tag_name']}} </a>  
+										@endif
+									@endforeach
+								</td>
 								<!-- <td>
 									<a href="{{url('admin/category/'.$category['id'].'/edit')}}" data-toggle="tooltip" title="Edit" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
 									<a href="{{url('admin/category/delete/'.$category['id'])}}" data-toggle="tooltip" title="Delete" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i></a></i></a>

@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Session;
 use Modules\Object\Repositories\ObjectRepository;
+use Modules\Object\Repositories\ObjectAttributeRepository;
 use Modules\Category\Repositories\CategoryRepository;
 use Image;
 
@@ -14,13 +15,16 @@ use Image;
 class ObjectController extends Controller{
 	private $objectRepo;
 	private $catagoryRepo;
+	private $objectAttributeRepo;
 
 	public function __construct(
 		ObjectRepository $objectRepo,
+		ObjectAttributeRepository $objectAttributeRepo,
 		CategoryRepository $catagoryRepo
 	){
 		$this->objectRepo = $objectRepo;
 		$this->catagoryRepo = $catagoryRepo;
+		$this->objectAttributeRepo = $objectAttributeRepo;
 	}
 
 	public function index(){
@@ -28,11 +32,13 @@ class ObjectController extends Controller{
 		$objects = $this->objectRepo->getAllObject();
 		$categories = $this->catagoryRepo->getAllCategory();
 		$catagoryRepo = $this->catagoryRepo;
-		return view('object::index',compact('categories','objects','catagoryRepo'));
+		return view('object::index',compact('categories','objects','catagoryRepo','attributes'));
 	}
 
-	public function create(){
-		return view('object::create');
+	public function create_attribute($object_id){
+		$object = $this->objectRepo->getObjectById($object_id);
+		$attributes = $this->objectAttributeRepo->getAttributeByObjectId($object_id);
+		return view('object::add-attribute',compact('object','attributes'));
 	}
 
 	public function store(Request $request){
@@ -58,6 +64,13 @@ class ObjectController extends Controller{
 		Session::flash('success','Operation Success');
 		return redirect('admin/object');
 	}
+
+	public function store_attribute(Request $request){
+		$this->objectAttributeRepo->createObjectAttribute($request->all());
+		Session::flash('success','Operation Success');
+		return redirect()->back();
+	}
+
 
 	public function show(){
 		return view('object::show');
