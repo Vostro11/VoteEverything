@@ -1,0 +1,16 @@
+{
+    "name": "Object",
+    "alias": "object",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Object\\Providers\\ObjectServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
