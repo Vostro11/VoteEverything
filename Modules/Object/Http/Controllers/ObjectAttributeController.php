@@ -6,16 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Session;
-use Modules\Object\Repositories\ObjectAtrributeRepository;
+use Modules\Object\Repositories\ObjectAttributeRepository;
 
 
 class ObjectAttributeController extends Controller{
-	private $objectAtrributeRepo;
+	private $objectAttributeRepo;
 
 	public function __construct(
-		ObjectAtrributeRepository $objectAtrributeRepo
+		ObjectAttributeRepository $objectAttributeRepo
 	){
-		$this->objectAtrributeRepo = $objectAtrributeRepo;
+		$this->objectAttributeRepo = $objectAttributeRepo;
 	}
 
 	public function index(){
