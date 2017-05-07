@@ -84,7 +84,7 @@
 								<select class="form-control" name="object_id">
 									
 									@foreach($objects as $object)
-									    <option value="{{$object_id}}">{{$object['object_name']}}</option>
+									    <option value="{{$object['id']}}">{{$object['object_name']}}</option>
 									@endforeach
 								</select> 
 								@if ($errors->has('object_id'))
