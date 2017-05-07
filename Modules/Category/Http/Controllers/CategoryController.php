@@ -7,21 +7,30 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Session;
 use Modules\Category\Repositories\CategoryRepository;
+use Modules\Category\Repositories\TagRepository;
+use Modules\Object\Repositories\ObjectRepository;
+
 
 
 class CategoryController extends Controller{
 	private $categoryRepo;
 
 	public function __construct(
-		CategoryRepository $categoryRepo
+		CategoryRepository $categoryRepo,
+		TagRepository $tagRepo,
+		ObjectRepository $objectRepo
 	){
 		$this->categoryRepo = $categoryRepo;
+		$this->objectRepo = $objectRepo;
+		$this->tagRepo = $tagRepo;
 	}
 
 	public function index(){
 		
 		$categories = $this->categoryRepo->getAllCategory();
-		return view('category::index',compact('categories'));
+		$objects = $this->objectRepo->getAllObject();
+		$tags = $this->tagRepo->getAllTag();
+		return view('category::index',compact('categories','objects'));
 	}
 
 	public function create(){

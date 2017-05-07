@@ -35,6 +35,11 @@
                     <i class="fa fa-dashboard"></i> <span>Category</span>
                 </a>
             </li>
+            <li class="active treeview">
+                <a href="{{url('admin/object')}}">
+                    <i class="fa fa-dashboard"></i> <span>Object</span>
+                </a>
+            </li>
             @include('backend.layouts.generated_menu')
             <li class="treeview">
                 <a href="#">

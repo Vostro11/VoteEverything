@@ -23,6 +23,9 @@ class ObjectServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerObjectAtrributeRepository();
+        $this->registerObjectRepository();
+        $this->registerUserObjectRepository();
     }
 
     /**
