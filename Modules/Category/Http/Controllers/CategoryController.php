@@ -30,7 +30,7 @@ class CategoryController extends Controller{
 		$categories = $this->categoryRepo->getAllCategory();
 		$objects = $this->objectRepo->getAllObject();
 		$tags = $this->tagRepo->getAllTag();
-		return view('category::index',compact('categories','objects'));
+		return view('category::index',compact('categories','objects','tags'));
 	}
 
 	public function create(){
