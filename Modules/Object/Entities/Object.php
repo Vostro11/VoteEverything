@@ -8,7 +8,7 @@ class Object extends Model{
 	protected $fillable=[
 				'id',
 				'object_name',
-				'area_id',
+				'cover_image',
 				'category_id',
 			];
 	protected $hidden=[
